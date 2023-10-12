@@ -51,13 +51,13 @@ class Discriminator(nn.Module):                             # 决定器类，继
         pos_e = self.all_embed[pos_item]                   # 项目的正例嵌入
         neg_e = self.all_embed[neg_item]                   # 项目的负例嵌入
 
-        # neg_scores = torch.sum(u_e * pos_e, dim=-1)        # 尚未搞清楚有啥好处
+        # neg_scores = torch.sum(u_e * pos_e, dim=-1)       
         # ij = torch.sum(pos_e * neg_e, dim=-1)
         # reward = neg_scores + ij
         ###################################################################
         pos_scores = torch.sum(u_e * pos_e, dim=-1)  # 正例得分
         neg_scores = torch.sum(u_e * neg_e, dim=-1)  # 负例得分
-        reward = pos_scores + neg_scores             # 使用正例得分减去负例得分作为奖励
+        reward = pos_scores + neg_scores             # 使用正例得分加上负例得分作为奖励
         ###################################################################
         return reward
 
