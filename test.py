@@ -93,7 +93,7 @@ def test_v2(model, ks, ckg, n_batchs=4):
 
             for u in range(s, t):
                 gt_pos = test_user_dict[u]
-                topk = topk_index[u - s]                   # 为什么 u - s
+                topk = topk_index[u - s]                   
                 num_pos = len(gt_pos)
 
                 topk_set = set(topk)
@@ -107,7 +107,7 @@ def test_v2(model, ks, ckg, n_batchs=4):
 
                 precision += num_hit / k                          # 命中数 / 根据训练集作出的推荐列表数
                 recall += num_hit / num_pos                       # 命中数 / 用户在测试集上的行为列表
-                hr += 1 if num_hit > 0 else 0                     # 第i个用户访问的值是否在推荐列表中，是则为1，否则为0
+                hr += 1 if num_hit > 0 else 0                     
                 ndcg += cal_ndcg(topk, test_set, num_pos, k)
                 # if i == 0:
                 #     record_dict[u] = [topk, num_hit, recall, ndcg]
